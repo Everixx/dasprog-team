@@ -1,0 +1,59 @@
+[
+  {
+    "kota": "Laladon",
+    "transportasi": [
+      {
+        "nama": "Angkot",
+        "biaya": 4000,
+        "jarak_km": 3.2,
+        "waktu_menit": 10
+      },
+      {
+        "nama": "Gojek",
+        "biaya": 9000,
+        "jarak_km": 3.2,
+        "waktu_menit": 8
+      },
+      {
+        "nama": "Motor Pribadi",
+        "biaya": 5000,
+        "jarak_km": 3.2,
+        "waktu_menit": 9
+      }
+    ]
+  },
+  {
+    "kota": "Cihideung",
+    "transportasi": [
+      {
+        "nama": "Angkot",
+        "biaya": 4000,
+        "jarak_km": 2.8,
+        "waktu_menit": 8
+      },
+      {
+        "nama": "Gojek",
+        "biaya": 8000,
+        "jarak_km": 2.8,
+        "waktu_menit": 6
+      },
+      {
+        "nama": "Grab",
+        "biaya": 8500,
+        "jarak_km": 2.8,
+        "waktu_menit": 7
+      }
+    ]
+  },
+  {
+    "kota": "Bekasi",
+    "transportasi": [
+      {
+        "nama": "KRL",
+        "biaya": 8000,
+        "jarak_km": 44.0,
+        "waktu_menit": 120
+      }
+    ]
+  }
+]
