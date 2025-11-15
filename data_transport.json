@@ -4,7 +4,7 @@
     "transportasi": [
       {
         "nama": "Angkot",
-        "biaya": 4000,
+        "biaya": 5000,
         "jarak_km": 3.2,
         "waktu_menit": 10
       },
@@ -21,7 +21,7 @@
     "transportasi": [
       {
         "nama": "Angkot",
-        "biaya": 4000,
+        "biaya": 5000,
         "jarak_km": 2.8,
         "waktu_menit": 8
       },
@@ -38,11 +38,11 @@
     "transportasi_ke_stasiun": [
       {
         "nama": "Ojek Online (Gojek/Grab)",
-        "biaya": 17000
+        "biaya": 12000
       },
       {
-        "nama": "Taxi",
-        "biaya": 40000
+        "nama": "Taxi  online (Gojek/Grab)",
+        "biaya": 15000
       },
       {
         "nama": "Angkot",
@@ -81,11 +81,11 @@
     "transportasi_ke_halte": [
       {
         "nama": "Ojek Online (Gojek/Grab)",
-        "biaya": 15000
+        "biaya": 7000
       },
       {
-        "nama": "Taxi",
-        "biaya": 25000
+        "nama": "Taxi online",
+        "biaya": 15000
       },
       {
         "nama": "Angkot",

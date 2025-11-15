@@ -105,19 +105,20 @@ def hitung_krl_dari_sv_ipb(data): #searching
         # Tahap 3: Dari Stasiun Tujuan
         print(f"\n📍 TAHAP 3: DARI STASIUN TUJUAN KE LOKASI AKHIR")
         print("Pilih transportasi dari stasiun tujuan:")
-        for i, transport in enumerate(konfig_krl["transportasi_dari_stasiun"], 1):
+        # PERBAIKAN: Gunakan transportasi_ke_stasiun yang sama untuk tahap 3
+        for i, transport in enumerate(konfig_krl["transportasi_ke_stasiun"], 1):
             print(f"{i}. {transport['nama']} - Rp {transport['biaya']:,}")
-        print(f"{len(konfig_krl['transportasi_dari_stasiun']) + 1}. Custom (masukkan manual)")
+        print(f"{len(konfig_krl['transportasi_ke_stasiun']) + 1}. Custom (masukkan manual)")
         
-        pilihan3 = input(f"Pilih transportasi (1-{len(konfig_krl['transportasi_dari_stasiun']) + 1}): ").strip()
+        pilihan3 = input(f"Pilih transportasi (1-{len(konfig_krl['transportasi_ke_stasiun']) + 1}): ").strip()
         
-        if pilihan3 == str(len(konfig_krl['transportasi_dari_stasiun']) + 1):
+        if pilihan3 == str(len(konfig_krl['transportasi_ke_stasiun']) + 1):
             biaya_dari_stasiun = int(input("Masukkan biaya dari stasiun: Rp "))
             nama_tahap3 = input("Jenis transportasi: ")
-        elif pilihan3.isdigit() and 1 <= int(pilihan3) <= len(konfig_krl['transportasi_dari_stasiun']):
+        elif pilihan3.isdigit() and 1 <= int(pilihan3) <= len(konfig_krl['transportasi_ke_stasiun']):
             idx = int(pilihan3) - 1
-            biaya_dari_stasiun = konfig_krl["transportasi_dari_stasiun"][idx]["biaya"]
-            nama_tahap3 = konfig_krl["transportasi_dari_stasiun"][idx]["nama"]
+            biaya_dari_stasiun = konfig_krl["transportasi_ke_stasiun"][idx]["biaya"]
+            nama_tahap3 = konfig_krl["transportasi_ke_stasiun"][idx]["nama"]
         else:
             print("❌ Pilihan tidak valid")
             return None
