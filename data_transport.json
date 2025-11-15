@@ -13,12 +13,6 @@
         "biaya": 9000,
         "jarak_km": 3.2,
         "waktu_menit": 8
-      },
-      {
-        "nama": "Motor Pribadi",
-        "biaya": 5000,
-        "jarak_km": 3.2,
-        "waktu_menit": 9
       }
     ]
   },
@@ -36,23 +30,63 @@
         "biaya": 8000,
         "jarak_km": 2.8,
         "waktu_menit": 6
-      },
-      {
-        "nama": "Grab",
-        "biaya": 8500,
-        "jarak_km": 2.8,
-        "waktu_menit": 7
       }
     ]
   },
   {
-    "kota": "Bekasi",
-    "transportasi": [
+    "kota": "KONFIGURASI_KRL",
+    "transportasi_ke_stasiun": [
       {
-        "nama": "KRL",
-        "biaya": 8000,
-        "jarak_km": 44.0,
-        "waktu_menit": 120
+        "nama": "Ojek Online (Gojek/Grab)",
+        "biaya": 12500
+      },
+      {
+        "nama": "Bus Kita",
+        "biaya": 4000
+      },
+      {
+        "nama": "Angkot",
+        "biaya": 5000
+      }
+    ],
+    "tujuan_krl": [
+      {
+        "nama": "Citayam",
+        "biaya": 3000
+      },
+      {
+        "nama": "Depok",
+        "biaya": 3000
+      },
+      {
+        "nama": "Tanah Abang",
+        "biaya": 4500
+      },
+      {
+        "nama": "Jakarta kota",
+        "biaya": 5000
+      },
+      {
+        "nama": "Bekasi",
+        "biaya": 7000
+      },
+      {
+        "nama": "Cikarang",
+        "biaya": 9000
+      }
+    ],
+    "transportasi_dari_stasiun": [
+      {
+        "nama": "Ojek Online",
+        "biaya": 12500
+      },
+      {
+        "nama": "Transjakarta/Bus Kita",
+        "biaya": 4000
+      },
+      {
+        "nama": "Angkot",
+        "biaya": 5000
       }
     ]
   }

@@ -2,5 +2,13 @@
   {
     "tujuan": "bekasi",
     "status": "pending"
+  },
+  {
+    "tujuan": "depok",
+    "status": "pending"
+  },
+  {
+    "tujuan": "Cikarang",
+    "status": "pending"
   }
 ]
