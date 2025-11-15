@@ -33,16 +33,16 @@
       }
     ]
   },
-  {
+   {
     "kota": "KONFIGURASI_KRL",
     "transportasi_ke_stasiun": [
       {
         "nama": "Ojek Online (Gojek/Grab)",
-        "biaya": 12500
+        "biaya": 17000
       },
       {
-        "nama": "Bus Kita",
-        "biaya": 4000
+        "nama": "Taxi",
+        "biaya": 40000
       },
       {
         "nama": "Angkot",
@@ -51,42 +51,59 @@
     ],
     "tujuan_krl": [
       {
-        "nama": "Citayam",
-        "biaya": 3000
+        "nama": "Bekasi",
+        "biaya": 6000
       },
       {
         "nama": "Depok",
         "biaya": 3000
       },
       {
-        "nama": "Tanah Abang",
-        "biaya": 4500
+        "nama": "Tangerang",
+        "biaya": 8000
       },
       {
         "nama": "Jakarta kota",
+        "biaya": 6000
+      },
+      {
+        "nama": "Jakarta Selatan",
         "biaya": 5000
       },
       {
-        "nama": "Bekasi",
-        "biaya": 7000
-      },
-      {
-        "nama": "Cikarang",
-        "biaya": 9000
+        "nama": "Jakarta Timur",
+        "biaya": 5000
       }
-    ],
-    "transportasi_dari_stasiun": [
+    ]
+  },
+  {
+    "kota": "KONFIGURASI_BISKITA",
+    "transportasi_ke_halte": [
       {
-        "nama": "Ojek Online",
-        "biaya": 12500
+        "nama": "Ojek Online (Gojek/Grab)",
+        "biaya": 15000
       },
       {
-        "nama": "Transjakarta/Bus Kita",
-        "biaya": 4000
+        "nama": "Taxi",
+        "biaya": 25000
       },
       {
         "nama": "Angkot",
         "biaya": 5000
+      }
+    ],
+    "tujuan_biskita": [
+      {
+        "nama": "Dramaga",
+        "biaya": 4000
+      },
+      {
+        "nama": "Ciawi",
+        "biaya": 4000
+      },
+      {
+        "nama": "Tangerang",
+        "biaya": 8000
       }
     ]
   }

@@ -29,7 +29,7 @@ def save_requests(requests):
     with open(REQUEST_FILE, "w", encoding="utf-8") as f:
         json.dump(requests, f, indent=2, ensure_ascii=False)
 
-def find_city(data, nama_kota):
+def find_city(data, nama_kota): #searching
     for kota in data:
         if kota["kota"].lower() == nama_kota.lower():
             return kota
@@ -38,15 +38,14 @@ def find_city(data, nama_kota):
 def sort_by_cheapest(data):
     """Fungsi untuk mengurutkan data berdasarkan biaya termurah"""
     # Filter out KRL configuration
-    data_tujuan = [kota for kota in data if kota.get("kota") != "KONFIGURASI_KRL"]
+    data_tujuan = [kota for kota in data if kota.get("kota") != "KONFIGURASI_KRL" and kota.get("kota") != "KONFIGURASI_BISKITA"]
     
     # Urutkan berdasarkan biaya transportasi termurah di setiap kota
     sorted_data = sorted(data_tujuan, key=lambda x: min(t["biaya"] for t in x["transportasi"]))
     
     return sorted_data
 
-def hitung_krl_dari_sv_ipb(data):
-    """Fungsi khusus untuk menghitung biaya KRL dari SV IPB menggunakan data dari JSON"""
+def hitung_krl_dari_sv_ipb(data): #searching
     # Cari konfigurasi KRL dalam data
     konfig_krl = None
     for item in data:
@@ -160,14 +159,129 @@ def hitung_krl_dari_sv_ipb(data):
         print("❌ Input harus angka!")
         return None
 
+def hitung_biskita_dari_sv_ipb(data): #searching
+    # Cari konfigurasi BISKITA dalam data
+    konfig_biskita = None
+    for item in data:
+        if item.get("kota") == "KONFIGURASI_BISKITA":
+            konfig_biskita = item
+            break
+    
+    if not konfig_biskita:
+        print("❌ Konfigurasi BISKITA tidak ditemukan dalam data")
+        return None
+
+    print("\n" + "="*60)
+    print("🚌 RUTE BISKITA DARI SV IPB - DENGAN TRANSPORTASI PENUNJANG")
+    print("="*60)
+    
+    try:
+        # Tahap 1: Ke Halte Biskita
+        print("\n📍 TAHAP 1: DARI SV IPB KE HALTE BISKITA")
+        print("Pilih transportasi ke halte:")
+        for i, transport in enumerate(konfig_biskita["transportasi_ke_halte"], 1):
+            print(f"{i}. {transport['nama']} - Rp {transport['biaya']:,}")
+        print(f"{len(konfig_biskita['transportasi_ke_halte']) + 1}. Custom (masukkan manual)")
+        
+        pilihan1 = input(f"Pilih transportasi ke halte (1-{len(konfig_biskita['transportasi_ke_halte']) + 1}): ").strip()
+        
+        if pilihan1 == str(len(konfig_biskita['transportasi_ke_halte']) + 1):
+            biaya_ke_halte = int(input("Masukkan biaya ke halte: Rp "))
+            nama_tahap1 = input("Jenis transportasi: ")
+        elif pilihan1.isdigit() and 1 <= int(pilihan1) <= len(konfig_biskita['transportasi_ke_halte']):
+            idx = int(pilihan1) - 1
+            biaya_ke_halte = konfig_biskita["transportasi_ke_halte"][idx]["biaya"]
+            nama_tahap1 = konfig_biskita["transportasi_ke_halte"][idx]["nama"]
+        else:
+            print("❌ Pilihan tidak valid")
+            return None
+            
+        # Tahap 2: BISKITA
+        print(f"\n📍 TAHAP 2: BISKITA DARI HALTE")
+        print("Pilih tujuan BISKITA:")
+        for i, tujuan in enumerate(konfig_biskita["tujuan_biskita"], 1):
+            print(f"{i}. {tujuan['nama']} - Rp {tujuan['biaya']:,}")
+        print(f"{len(konfig_biskita['tujuan_biskita']) + 1}. Custom (masukkan manual)")
+        
+        pilihan2 = input(f"Pilih tujuan BISKITA (1-{len(konfig_biskita['tujuan_biskita']) + 1}): ").strip()
+        
+        if pilihan2 == str(len(konfig_biskita['tujuan_biskita']) + 1):
+            biaya_biskita = int(input("Masukkan biaya BISKITA: Rp "))
+            tujuan_biskita = input("Tujuan BISKITA: ")
+        elif pilihan2.isdigit() and 1 <= int(pilihan2) <= len(konfig_biskita['tujuan_biskita']):
+            idx = int(pilihan2) - 1
+            biaya_biskita = konfig_biskita["tujuan_biskita"][idx]["biaya"]
+            tujuan_biskita = konfig_biskita["tujuan_biskita"][idx]["nama"]
+        else:
+            print("❌ Pilihan tidak valid")
+            return None
+            
+        # Tahap 3: Dari Halte Tujuan
+        print(f"\n📍 TAHAP 3: DARI HALTE TUJUAN KE LOKASI AKHIR")
+        print("Pilih transportasi dari halte tujuan:")
+        # Menggunakan transportasi_ke_halte yang sama untuk tahap 3
+        for i, transport in enumerate(konfig_biskita["transportasi_ke_halte"], 1):
+            print(f"{i}. {transport['nama']} - Rp {transport['biaya']:,}")
+        print(f"{len(konfig_biskita['transportasi_ke_halte']) + 1}. Custom (masukkan manual)")
+        
+        pilihan3 = input(f"Pilih transportasi (1-{len(konfig_biskita['transportasi_ke_halte']) + 1}): ").strip()
+        
+        if pilihan3 == str(len(konfig_biskita['transportasi_ke_halte']) + 1):
+            biaya_dari_halte = int(input("Masukkan biaya dari halte: Rp "))
+            nama_tahap3 = input("Jenis transportasi: ")
+        elif pilihan3.isdigit() and 1 <= int(pilihan3) <= len(konfig_biskita['transportasi_ke_halte']):
+            idx = int(pilihan3) - 1
+            biaya_dari_halte = konfig_biskita["transportasi_ke_halte"][idx]["biaya"]
+            nama_tahap3 = konfig_biskita["transportasi_ke_halte"][idx]["nama"]
+        else:
+            print("❌ Pilihan tidak valid")
+            return None
+        
+        # Hitung total
+        total_sekali = biaya_ke_halte + biaya_biskita + biaya_dari_halte
+        
+        # Tampilkan rincian
+        print("\n" + "="*50)
+        print("💰 RINCIAN BIAYA PERJALANAN BISKITA DARI SV IPB")
+        print("="*50)
+        print(f"1. {nama_tahap1:<20} : Rp{biaya_ke_halte:,}")
+        print(f"2. BISKITA ke {tujuan_biskita:<12} : Rp{biaya_biskita:,}")
+        print(f"3. {nama_tahap3:<20} : Rp{biaya_dari_halte:,}")
+        print("-" * 50)
+        print(f"TOTAL SEKALI JALAN              : Rp{total_sekali:,}")
+        print(f"PULANG-PERGI                    : Rp{total_sekali * 2:,}")
+        
+        # Estimasi mingguan/bulanan
+        print("\n" + "="*30)
+        print("📅 ESTIMASI REGULER")
+        print("="*30)
+        print(f"Per minggu (5x PP) : Rp{total_sekali * 2 * 5:,}")
+        print(f"Per bulan (20x PP) : Rp{total_sekali * 2 * 20:,}")
+        print("="*50)
+        
+        return {
+            "jenis": "BISKITA_MULTIMODA",
+            "rincian": {
+                "tahap1": {"nama": nama_tahap1, "biaya": biaya_ke_halte},
+                "tahap2": {"nama": f"BISKITA ke {tujuan_biskita}", "biaya": biaya_biskita},
+                "tahap3": {"nama": nama_tahap3, "biaya": biaya_dari_halte}
+            },
+            "total_sekali": total_sekali,
+            "tujuan_biskita": tujuan_biskita
+        }
+        
+    except ValueError:
+        print("❌ Input harus angka!")
+        return None
+
 def menu_tujuan(data):
     """Menu 1: Lihat tujuan dan transportasi dengan fitur sorting biaya termurah"""
     print("\n" + "="*50)
     print("🎯 DAFTAR TUJUAN DAN TRANSPORTASI")
     print("="*50)
     
-    # Filter data untuk mengecualikan konfigurasi KRL
-    data_tujuan = [kota for kota in data if kota.get("kota") != "KONFIGURASI_KRL"]
+    # Filter data untuk mengecualikan konfigurasi KRL dan BISKITA
+    data_tujuan = [kota for kota in data if kota.get("kota") != "KONFIGURASI_KRL" and kota.get("kota") != "KONFIGURASI_BISKITA"]
     
     if not data_tujuan:
         print("❌ Belum ada data tujuan")
@@ -203,12 +317,13 @@ def menu_tujuan(data):
         for j, transport in enumerate(transportasi_sorted, 1):
             print(f"   {j}. {transport['nama']} - Rp{transport['biaya']:,} - {transport['jarak_km']} km - {transport['waktu_menit']} menit")
     
-    # Tambahkan opsi KRL khusus
+    # Tambahkan opsi KRL dan BISKITA khusus
     print(f"\n{len(data_tampil) + 1}. 🚆 KRL (Dari SV IPB dengan transportasi penunjang)")
+    print(f"{len(data_tampil) + 2}. 🚌 BISKITA (Dari SV IPB dengan transportasi penunjang)")
     
     # Pilih untuk estimasi biaya
     try:
-        pilihan = input(f"\nPilih nomor tujuan untuk estimasi biaya (1-{len(data_tampil) + 1}) atau 0 untuk kembali: ").strip()
+        pilihan = input(f"\nPilih nomor tujuan untuk estimasi biaya (1-{len(data_tampil) + 2}) atau 0 untuk kembali: ").strip()
         if pilihan == "0":
             return
         
@@ -217,6 +332,11 @@ def menu_tujuan(data):
         # Jika memilih opsi KRL khusus
         if pilihan_int == len(data_tampil) + 1:
             hasil_krl = hitung_krl_dari_sv_ipb(data)
+            return
+        
+        # Jika memilih opsi BISKITA khusus
+        if pilihan_int == len(data_tampil) + 2:
+            hasil_biskita = hitung_biskita_dari_sv_ipb(data)
             return
         
         idx_kota = pilihan_int - 1
