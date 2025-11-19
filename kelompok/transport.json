@@ -1,0 +1,17 @@
+{
+  "admin_password": "admin123",
+  "transport_to_station": [
+    {"name": "Ojek Online", "cost": 15000},
+    {"name": "Angkot", "cost": 5000},
+    {"name": "Kendaraan Pribadi", "cost": 0},
+    {"name": "Taksi", "cost": 25000}
+  ],
+  "krl_destinations": [
+    {"name": "Bekasi", "cost": 6000},
+    {"name": "Depok", "cost": 3000},
+    {"name": "Tangerang", "cost": 8000},
+    {"name": "Jakarta Kota", "cost": 6000},
+    {"name": "Jakarta Selatan", "cost": 5000},
+    {"name": "Jakarta Timur", "cost": 5000}
+  ]
+}
