@@ -1,0 +1,44 @@
+{
+  "admin_password": "admin123",
+  "transport_to_station": [
+    {"name": "Jalan Kaki","cost": 0},
+    {"name": "Angkot","cost": 5000},
+    {"name": "Bis kita","cost": 3000},
+    {"name": "Taksi","cost": 25000},
+    {"name": "Ojol","cost": 12000},
+    {"name": "Nebeng Teman","cost": 0},
+    {"name": "Kendaraan Pribadi","cost": 0}
+  ],
+  "transport_from_destination": [
+    {"name": "Jalan Kaki","cost": 0},
+    {"name": "Angkot","cost": 5000},
+    {"name": "Bis kita","cost": 3000},
+    {"name": "Taksi","cost": 25000},
+    {"name": "Ojol","cost": 12000},
+    {"name": "Kendaraan Pribadi","cost": 0}
+  ],
+  "krl_destinations": [
+    {"name": "Bekasi", "cost": 7000},
+    {"name": "Depok", "cost": 3000},
+    {"name": "Tangerang", "cost": 8000},
+    {"name": "Jakarta Kota", "cost": 6000},
+    {"name": "Tanah Abang", "cost": 5000},
+    {"name": "Duren Kalibata", "cost": 6000},
+    {"name": "Univ Indonesia", "cost": 4000},
+    {"name": "Manggarai", "cost": 5000},
+    {"name": "Batu Ceper", "cost": 8000},
+    {"name": "Kali Deres", "cost": 8000},
+    {"name": "Taman Kota", "cost": 7000},
+    {"name": "Cikarang", "cost": 9000},
+    {"name": "Cakung", "cost": 7000},
+    {"name": "Jatinegara", "cost": 6000},
+    {"name": "Pondok Jati", "cost": 6000},
+    {"name": "Kemayoran", "cost": 6000},
+    {"name": "Sudirman", "cost": 6000},
+    {"name": "Tanjung Priok", "cost": 7000},
+    {"name": "Rawa Buntu", "cost": 8000},
+    {"name": "Serpong", "cost": 9000},
+    {"name": "Cawang", "cost": 5000},
+    {"name": "Mangga Besar", "cost": 7000}
+  ]
+}
